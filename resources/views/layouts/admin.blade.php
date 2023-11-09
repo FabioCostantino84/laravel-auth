@@ -53,7 +53,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ url('dashboard') }}">{{ __('Dashboard') }}</a>
+                            <a class="dropdown-item" href="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</a>
                             <a class="dropdown-item" href="{{ url('profile') }}">{{ __('Profile') }}</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
@@ -86,7 +86,7 @@
                                     <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Dashboard
                                 </a>
 
-                                {{-- <a class="nav-link text-white {{ Route::currentRouteName() == 'admin/project' ? 'bg-secondary' : '' }}"
+                                {{-- <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.project' ? 'bg-secondary' : '' }}"
                                     href="{{ route('project.index') }}">
                                     <i class="fa-solid fa-folder-open fa-lg fa-fw"></i> Projects
                                 </a> --}}
