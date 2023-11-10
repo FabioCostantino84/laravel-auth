@@ -16,6 +16,8 @@
                     <button class="btn btn-success mb-3" type="submit">Aggiungi un nuovo progetto</button>
                 </form> --}}
 
+                {{$projects->links('pagination::bootstrap-5')}}
+
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">THUMB</th>
@@ -65,10 +67,15 @@
                             </form> --}}
                         </td>
                     </tr>
-                @endforeach
+                    @endforeach
 
-            </tbody>
+                    
+                    
+                </tbody>
         </table>
-
+        
+        {{$projects->links('pagination::bootstrap-5')}}
+        
     </div>
-@endsection
+    @endsection
+    

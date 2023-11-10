@@ -14,7 +14,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all(); // Chiama il modello Project e con all() recupera tutti i records della tabella associata.
+        $projects = Project::orderByDesc('id')->paginate(6); // Chiama il modello Project con all() recupera tutti i records della tabella associata, con orderByDesc('id') recupera in ordine discendente in base all' id.
         //dd($projects);
 
         return view('admin.projects.index', compact('projects')); // Crea un array associativo dove la chiave è il nome della variabile nella vista ('projects') e il valore è la variabile nel controller ($projects).
