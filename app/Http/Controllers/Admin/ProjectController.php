@@ -6,6 +6,8 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ProjectController extends Controller
 {
@@ -37,6 +39,20 @@ class ProjectController extends Controller
 
         // facciamo la validazione
         $val_data = $request->validated();
+
+        // genera lo slug del projects
+        $val_data['slug'] = Str::slug($request->title, '-');
+
+        // aggiunge immagine se viene passata alla richiesta
+        if ($request->has('thumb')) {
+            $path = Storage::put('projects_thumb', $request->thumb);
+            $val_data['thumb'] = $path;
+        }
+
+        //dd($val_data);
+        // creiamo il nuovo progetto
+        Project::create($val_data);
+        return to_route('admin.projects.index')->with('message', 'Upload project created successfully'); //@if (session('messaggio')) nella view.
     }
 
     /**
