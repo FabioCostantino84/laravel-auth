@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +25,12 @@ Route::get('/', function () {
 // aggiungo ->prefix('nome') in questo modo tutte le mie rotte avranno come prefisso il nome che ho scelto
 Route::middleware('auth', 'verified')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+    // Tutte queste rotte inizieranno con '/admin/.....'
+
+    Route::resource('projects', ProjectController::class);
+
+
 });
-// Tutte queste rotte inizieranno con '/admin/.....'
 
 
 /* Routs Admin Profile */
