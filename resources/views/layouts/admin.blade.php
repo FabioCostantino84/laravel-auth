@@ -36,11 +36,11 @@
             <input class="form-control form-control-dark w-50" type="text" placeholder="Search" aria-label="Search">
             <div class="navbar-nav">
                 <div class="nav-item text-nowrap ms-2">
-                    <a class="nav-link" href="{{ route('logout') }}"
+                    {{-- <a class="nav-link" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}
-                    </a>
+                    </a> --}}
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
@@ -52,7 +52,7 @@
                             {{ Auth::user()->name }}
                         </a>
 
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <div class=" dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</a>
                             <a class="dropdown-item" href="{{ url('profile') }}">{{ __('Profile') }}</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
@@ -81,15 +81,15 @@
                         <ul class="nav flex-column">
                             <li class="nav-item">
 
-                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.dashboard' ? 'bg-secondary' : '' }}"
+                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.dashboard' ? 'bg-primary' : '' }}"
                                     href="{{ route('admin.dashboard') }}">
                                     <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Dashboard
                                 </a>
 
-                                {{-- <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.project' ? 'bg-secondary' : '' }}"
-                                    href="{{ route('project.index') }}">
+                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.projects.index' ? 'bg-primary' : '' }}"
+                                    href="{{ route('admin.projects.index') }}">
                                     <i class="fa-solid fa-folder-open fa-lg fa-fw"></i> Projects
-                                </a> --}}
+                                </a>
                             </li>
 
                         </ul>
