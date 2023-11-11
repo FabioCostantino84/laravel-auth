@@ -61,6 +61,7 @@ class ProjectController extends Controller
     public function show(Project $project)
     {
         //dd($project);
+        return view('admin.projects.show', compact('project'));
     }
 
     /**
@@ -68,7 +69,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('admin.projects.edit', compact('project'));
     }
 
     /**
@@ -76,7 +77,22 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        $val_data = $request->validated();
+
+        if ($request->has('thumb')) {
+            $path = Storage::put('projects_thumb', $request->thumb);
+            $val_data['thumb'] = $path;
+        }
+
+        if (!Str::is($project->getOriginal('title'), $request->title)) {
+
+            // NB: shuld check if it exists
+            // update the project slug
+            $val_data['slug'] = $project->generateSlug($request->title);
+        }
+
+        $project->update($val_data);
+        return to_route('admin.projects.index')->with('message', 'Project updated successfully');
     }
 
     /**
@@ -84,6 +100,11 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        if ($project->thumb) {
+            Storage::delete($project->thumb);
+        }
+
+        $project->delete();
+        return to_route('admin.projects.index')->with('message', 'Project deleted successfully');
     }
 }
