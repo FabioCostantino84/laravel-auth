@@ -3,12 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Project;
+use App\Models\User;
 
 class DashboardController extends Controller
 {
+
+
     public function index()
     {
-        return view('admin.dashboard'); // aggiungiamo admin. perchè il dashboard.blade che abbiamo nella view lo mettiamo in un cartella admin
+
+        $total_projects = Project::all()->count();
+        $total_users = User::all()->count();
+
+        return view('admin.dashboard', compact('total_projects', 'total_users'));
     }
 }
