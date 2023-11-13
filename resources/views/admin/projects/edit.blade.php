@@ -49,7 +49,7 @@
 
                     <div class="mb-3">
 
-                        <label for="tech" class="form-label"><strong>Technologies Used</strong></label>
+                        <label for="tech" class="form-label"><strong>Tech Used</strong></label>
 
                         <input type="text" class="form-control" name="tech" id="tech"
                             aria-describedby="helpTitle" value="{{ old('tech') ? old('tech') : $project->tech }}">
@@ -111,9 +111,9 @@
 
                     </div>
 
-                    <button type="submit" class="btn btn-success my-3"><i class="fa-solid fa-floppy-disk"></i>
+                    <button type="submit" class="btn btn-success my-3"><i class="fa-regular fa-floppy-disk"></i>
                         Save</button>
-                    <a class="btn btn-primary" href="{{ route('admin.projects.index') }}"><i class="fa-solid fa-ban"></i>
+                    <a class="btn btn-primary" href="{{ route('admin.projects.index') }}"><i class="fa-solid fa-circle-chevron-left"></i>
                         Go back</a>
 
                 </form>
