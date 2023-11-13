@@ -8,6 +8,8 @@ use App\Models\Project;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+
 
 class ProjectController extends Controller
 {
@@ -84,16 +86,23 @@ class ProjectController extends Controller
             $val_data['thumb'] = $path;
         }
 
-        if (!Str::is($project->getOriginal('title'), $request->title)) {
+        /* if (!Str::is($project->getOriginal('title'), $request->title)) {
 
             // NB: shuld check if it exists
             // update the project slug
             $val_data['slug'] = $project->generateSlug($request->title);
-        }
+        } */
 
         $project->update($val_data);
         return to_route('admin.projects.index')->with('message', 'Project updated successfully');
     }
+
+    /* public function update(Request $request, Project $project)
+    {
+        $val_data = $request->all();
+        $project->update($val_data);
+        return redirect()->route('admin.projects.index', $project->id);
+    } */
 
     /**
      * Remove the specified resource from storage.
